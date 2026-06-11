@@ -11,10 +11,11 @@ $kernel = $app->make(Illuminate\Contracts\Console\Kernel::class);
 $kernel->bootstrap();
 
 // Helper: recursive copy
-function rcopy($src, $dst) {
+function rcopy($src, $dst)
+{
     $dir = opendir($src);
     @mkdir($dst, 0755, true);
-    while(false !== ($file = readdir($dir))) {
+    while (false !== ($file = readdir($dir))) {
         if (($file != '.') && ($file != '..')) {
             if (is_dir($src . '/' . $file)) {
                 rcopy($src . '/' . $file, $dst . '/' . $file);
@@ -31,8 +32,9 @@ if (is_dir($staticPath)) {
     // remove recursively
     $it = new RecursiveDirectoryIterator($staticPath, RecursiveDirectoryIterator::SKIP_DOTS);
     $files = new RecursiveIteratorIterator($it, RecursiveIteratorIterator::CHILD_FIRST);
-    foreach($files as $file) {
-        if ($file->isDir()) rmdir($file->getRealPath()); else unlink($file->getRealPath());
+    foreach ($files as $file) {
+        if ($file->isDir()) rmdir($file->getRealPath());
+        else unlink($file->getRealPath());
     }
     rmdir($staticPath);
 }
