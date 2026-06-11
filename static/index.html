@@ -20,7 +20,7 @@
         html,
         body {
             height: 100%;
-            overflow: auto;
+            overflow: hidden;
         }
 
         .font-streetwear {
@@ -66,24 +66,32 @@
 
     <main class="relative h-screen">
 
-        <!-- Fullscreen background video (place your video at public/DND TEST.mp4) -->
+        <!-- Fullscreen background video (place your video at public/videos/DND_TEST.mp4) -->
         <video id="bg-video" autoplay muted loop playsinline crossorigin="anonymous">
             <source src="./DND TEST.mp4" type="video/mp4">
             <!-- Fallback image -->
             <img src="./logo.png" alt="Background">
         </video>
-        <!-- Centered vertical nav (responsive) -->
-        <div class="absolute inset-0 flex items-center justify-center px-4">
-            <div class="w-full max-w-md flex flex-col items-center gap-6">
-                <img src="./dnd_oldlogo-removebg.png" alt="DND Logo" class="w-40 max-w-full h-auto">
+        <div class="absolute inset-0 flex items-center justify-center">
+            <nav class="flex flex-col items-center gap-4">
 
-                <nav class="w-full flex flex-col items-center gap-4">
-                    <a href="./shirt-collections" class="w-full text-center px-6 py-3 bg-white/8 hover:bg-white/12 rounded-md">COLLECTIONS</a>
-                    <a href="./shop" class="w-full text-center px-6 py-3 bg-white/8 hover:bg-white/12 rounded-md">SHOP</a>
-                    <a href="./help" class="w-full text-center px-6 py-3 bg-white/8 hover:bg-white/12 rounded-md">HELP</a>
-                    <a href="./contacts" class="w-full text-center px-6 py-3 bg-white/8 hover:bg-white/12 rounded-md">CONTACT</a>
-                </nav>
-            </div>
+                <div class="mb-2 flex items-center justify-center">
+                    <img src="./dnd_oldlogo-removebg.png" alt="DND Logo" class="w-40 h-auto">
+
+
+                </div>
+                <a href="./shirt-collections"
+                    class="nav-link inline-block transform scale-y-[0.8] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100">COLLECTION</a>
+
+                <a href="./shop"
+                    class="nav-link inline-block transform scale-y-[0.8] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100">SHOP</a>
+
+                <a href="./help"
+                    class="nav-link inline-block transform scale-y-[0.8] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100">HELP</a>
+
+                <a href="./contacts"
+                    class="nav-link inline-block transform scale-y-[0.8] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100">CONTACT</a>
+            </nav>
         </div>
 
     </main>
