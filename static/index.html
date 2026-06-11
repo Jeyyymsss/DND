@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DND</title>
     <!-- Favicon / Tab icon -->
-    <link rel="icon" href="http://localhost/logo.jpg" type="image/x-icon">
-    <link rel="apple-touch-icon" href="http://localhost/logo.jpg">
+    <link rel="icon" href="./logo.jpg" type="image/x-icon">
+    <link rel="apple-touch-icon" href="./logo.jpg">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -66,47 +66,32 @@
 
     <main class="relative h-screen">
 
-        <!-- Fullscreen background video (uses public/DND TEST.mp4) -->
+        <!-- Fullscreen background video (place your video at public/videos/DND_TEST.mp4) -->
         <video id="bg-video" autoplay muted loop playsinline crossorigin="anonymous">
-            <source src="DND TEST.mp4" type="video/mp4">
+            <source src="./DND TEST.mp4" type="video/mp4">
+            <!-- Fallback image -->
+            <img src="./logo.png" alt="Background">
         </video>
-
-        <!-- Logo at top -->
-        <div class="absolute top-0 left-0 right-0 flex justify-center pt-6 z-10">
-            <img src="dnd_oldlogo-removebg.png" alt="DND Logo" class="w-full max-w-xs h-auto">
-        </div>
-
-        <!-- Back button (uses history.back) -->
-        
-        <!-- Centered navigation -->
-        <div class="absolute inset-0 flex items-center justify-center z-10">
+        <div class="absolute inset-0 flex items-center justify-center">
             <nav class="flex flex-col items-center gap-4">
+
+                <div class="mb-2 flex items-center justify-center">
+                    <img src="./dnd_oldlogo-removebg.png" alt="DND Logo" class="w-40 h-auto">
+
+
+                </div>
                 <a href="./shirt-collections"
-                    class="nav-link inline-block transform scale-y-[0.8] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100">
-                    COLLECTION
-                </a>
+                    class="nav-link inline-block transform scale-y-[0.8] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100">COLLECTION</a>
 
                 <a href="./shop"
-                    class="nav-link inline-block transform scale-y-[0.8] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100">
-                    SHOP
-                </a>
+                    class="nav-link inline-block transform scale-y-[0.8] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100">SHOP</a>
 
                 <a href="./help"
-                    class="nav-link inline-block transform scale-y-[0.8] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100">
-                    HELP
-                </a>
+                    class="nav-link inline-block transform scale-y-[0.8] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100">HELP</a>
 
                 <a href="./contacts"
-                    class="nav-link inline-block transform scale-y-[0.8] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100">
-                    CONTACT
-                </a>
+                    class="nav-link inline-block transform scale-y-[0.8] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100">CONTACT</a>
             </nav>
-        </div>
-
-        <!-- Content yield for child pages -->
-        <div class="absolute inset-0 flex items-start justify-center z-20 pt-36">
-            <div class="w-full">
-                            </div>
         </div>
 
     </main>

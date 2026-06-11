@@ -18,7 +18,7 @@
         html,
         body {
             height: 100%;
-            overflow: hidden;
+            overflow: auto;
         }
 
         .font-streetwear {
@@ -61,33 +61,50 @@
 <body
     class="bg-gradient-dnd text-white font-nav min-h-screen flex flex-col justify-between antialiased selection:bg-emerald-800 selection:text-white">
 
-    <video id="bg-video" autoplay muted loop playsinline crossorigin="anonymous">
-        <source src="http://localhost/DND TEST.mp4" type="video/mp4">
-    </video>
+    {{-- <video id="bg-video" autoplay muted loop playsinline crossorigin="anonymous">
+        <source src="/DND%20TEST.mp4" type="video/mp4">
+    </video> --}}
 
     <header
-        class="fixed top-0 left-0 right-0 z-50 flex items-center justify-start px-8 py-6 bg-gradient-to-b from-black/60 to-transparent backdrop-blur-xs">
-        <nav class="flex flex-row items-center gap-6 md:gap-10">
-            <a href="{{ route('shirt-collections') }}"
-                class="nav-link inline-block transform scale-y-[0.85] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100 whitespace-nowrap">
-                COLLECTION
-            </a>
+        class="fixed top-0 left-0 right-0 z-50 flex items-center justify-center px-4 py-4 bg-gradient-to-b from-black/60 to-transparent backdrop-blur-xs">
+        <div class="flex items-center w-full justify-between">
+            <div class="flex items-center gap-4">
+                <!-- Site logo small (keeps original look) -->
+                <a href="{{ route('home') }}" class="hidden sm:block">
+                    <img src="/dnd_newlogo-removebg.png" alt="logo" class="w-20 h-auto">
+                </a>
+            </div>
 
-            <a href="{{ route('shop') }}"
-                class="nav-link inline-block transform scale-y-[0.85] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100 whitespace-nowrap">
-                SHOP
-            </a>
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-button" class="md:hidden p-2 rounded bg-white/10 hover:bg-white/20">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
 
-            <a href="{{ route('help') }}"
-                class="nav-link inline-block transform scale-y-[0.85] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100 whitespace-nowrap">
-                HELP
-            </a>
+            <nav id="main-nav" class="hidden md:flex flex-row items-center gap-4 md:gap-10 flex-wrap overflow-auto">
+                <a href="{{ route('shirt-collections') }}"
+                    class="nav-link inline-block transform scale-y-[0.85] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100 whitespace-nowrap">
+                    COLLECTION
+                </a>
 
-            <a href="{{ route('contact') }}"
-                class="nav-link inline-block transform scale-y-[0.85] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100 whitespace-nowrap">
-                CONTACT
-            </a>
-        </nav>
+                <a href="{{ route('shop') }}"
+                    class="nav-link inline-block transform scale-y-[0.85] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100 whitespace-nowrap">
+                    SHOP
+                </a>
+
+                <a href="{{ route('help') }}"
+                    class="nav-link inline-block transform scale-y-[0.85] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100 whitespace-nowrap">
+                    HELP
+                </a>
+
+                <a href="{{ route('contact') }}"
+                    class="nav-link inline-block transform scale-y-[0.85] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100 whitespace-nowrap">
+                    CONTACT
+                </a>
+            </nav>
+        </div>
     </header>
 
     <main class="relative flex-grow h-full">
@@ -133,6 +150,52 @@
         </button>
 
     </footer>
+
+    <script>
+        (function() {
+            const btn = document.getElementById('mobile-menu-button');
+            const nav = document.getElementById('main-nav');
+            if (!btn || !nav) return;
+            btn.addEventListener('click', function() {
+                if (nav.classList.contains('hidden')) {
+                    nav.classList.remove('hidden');
+                    nav.classList.add('block');
+                } else {
+                    nav.classList.add('hidden');
+                    nav.classList.remove('block');
+                }
+            });
+            // close on outside click
+            document.addEventListener('click', function(e) {
+                if (!nav.contains(e.target) && !btn.contains(e.target)) {
+                    if (!nav.classList.contains('hidden')) {
+                        nav.classList.add('hidden');
+                        nav.classList.remove('block');
+                    }
+                }
+            });
+            // Welcome page sidebar toggle (if present)
+            const wBtn = document.getElementById('welcome-nav-toggle');
+            const wSidebar = document.getElementById('welcome-sidebar');
+            if (wBtn && wSidebar) {
+                wBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    if (wSidebar.classList.contains('-translate-x-full')) {
+                        wSidebar.classList.remove('-translate-x-full');
+                    } else {
+                        wSidebar.classList.add('-translate-x-full');
+                    }
+                });
+                document.addEventListener('click', function(e) {
+                    if (!wSidebar.contains(e.target) && !wBtn.contains(e.target)) {
+                        if (!wSidebar.classList.contains('-translate-x-full')) {
+                            wSidebar.classList.add('-translate-x-full');
+                        }
+                    }
+                });
+            }
+        })();
+    </script>
 
 </body>
 
