@@ -68,7 +68,7 @@
 
         <!-- Fullscreen background video (place your video at public/videos/DND_TEST.mp4) -->
         <video id="bg-video" autoplay muted loop playsinline crossorigin="anonymous">
-            <source src="{{ asset('DND TEST.mp4') }}" type="video/mp4">
+            <source src="{{ asset('DND_TEST.mp4') }}" type="video/mp4">
             <!-- Fallback image -->
             <img src="{{ asset('logo.png') }}" alt="Background">
         </video>
