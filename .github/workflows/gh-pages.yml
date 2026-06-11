@@ -11,30 +11,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up tools
-        run: |
-          sudo apt-get update && sudo apt-get install -y --no-install-recommends gettext-base
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          extensions: mbstring, xml, gd, zip, pdo_mysql
 
-      - name: Prepare site folder
-        run: |
-          mkdir site
-          # Copy public assets (images, css, js, videos) into site root
-          if [ -d public ]; then cp -r public/* site/ || true; fi
+      - name: Install Composer dependencies
+        run: composer install --no-dev --no-interaction --prefer-dist
 
-      - name: Render welcome view to static HTML
+      - name: Run static exporter
         run: |
-          # Convert Blade asset() helpers to relative paths and write to site/index.html
-          sed -E "s/\{\{\s*asset\('\\'([^']+)\\'\)\s*\}\}/\1/g" resources/views/welcome.blade.php \
-            | sed -E "s/\{\{\s*\$?APP_NAME\s*\}\}/$(basename $GITHUB_REPOSITORY)/g" \
-            > site/index.html || true
-
-      - name: Clean up site html
-        run: |
-          # Remove any remaining Blade/PHP directives that may break static page
-          sed -i -E "s/@[a-zA-Z_]+\b//g" site/index.html || true
+          php scripts/export_static.php
 
       - name: Publish to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./site
+          publish_dir: ./static
