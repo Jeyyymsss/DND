@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('layout')
 
 @section('content')
     <div class="flex flex-col items-center justify-center text-center p-8">
