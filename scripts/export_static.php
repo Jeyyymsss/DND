@@ -49,13 +49,51 @@ if (is_dir($publicPath)) {
 Illuminate\Support\Facades\Config::set('app.url', '');
 Illuminate\Support\Facades\URL::forceRootUrl('');
 
-try {
-    $html = view('welcome')->render();
-} catch (Exception $e) {
-    echo "Error rendering view: " . $e->getMessage() . PHP_EOL;
-    exit(1);
-}
+$pages = [
+    '' => 'welcome',
+    'shop' => 'shop.index',
+    'contacts' => 'contacts.index',
+    'help' => 'help.index',
+    'shirt-collections' => 'shirt_collections.index',
+];
 
-file_put_contents($staticPath . DIRECTORY_SEPARATOR . 'index.html', $html);
+foreach ($pages as $path => $view) {
+    if (!view()->exists($view)) {
+        echo "Skipping missing view: $view" . PHP_EOL;
+        continue;
+    }
+
+    try {
+        $html = view($view)->render();
+    } catch (Exception $e) {
+        echo "Error rendering view $view: " . $e->getMessage() . PHP_EOL;
+        continue;
+    }
+
+    // Determine output directory
+    $outDir = $staticPath;
+    if ($path !== '') {
+        $outDir = $staticPath . DIRECTORY_SEPARATOR . $path;
+        if (!is_dir($outDir)) mkdir($outDir, 0755, true);
+    }
+
+    // Compute base href for this page so relative paths resolve on GitHub Pages
+    $depth = 0;
+    if ($path !== '') {
+        $depth = count(explode('/', trim($path, '/')));
+    }
+    $baseHref = ($depth === 0) ? './' : str_repeat('../', $depth);
+
+    // Insert base tag after <head>
+    $html = preg_replace('/<head(.*?)>/i', '<head$1>\n    <base href="' . $baseHref . '">', $html, 1);
+
+    // Rewrite root-relative URLs (/path) to be relative using baseHref
+    $html = preg_replace('#(src|href|action)=("|\')/([^"\']+)#i', '$1=$2' . $baseHref . '$3', $html);
+
+    // Write index.html for this page
+    $outFile = rtrim($outDir, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . 'index.html';
+    file_put_contents($outFile, $html);
+    echo "Wrote: $outFile" . PHP_EOL;
+}
 
 echo "Static export complete. Files written to: $staticPath" . PHP_EOL;
