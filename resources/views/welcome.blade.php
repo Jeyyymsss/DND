@@ -66,51 +66,32 @@
 
     <main class="relative h-screen">
 
-        <!-- Fullscreen background video (uses public/DND TEST.mp4) -->
+        <!-- Fullscreen background video (place your video at public/videos/DND_TEST.mp4) -->
         <video id="bg-video" autoplay muted loop playsinline crossorigin="anonymous">
             <source src="{{ asset('DND TEST.mp4') }}" type="video/mp4">
+            <!-- Fallback image -->
+            <img src="{{ asset('logo.png') }}" alt="Background">
         </video>
-
-        <!-- Logo at top -->
-        <div class="absolute top-0 left-0 right-0 flex justify-center pt-6 z-10">
-            <img src="{{ asset('dnd_oldlogo-removebg.png') }}" alt="DND Logo" class="w-full max-w-xs h-auto">
-        </div>
-
-        <!-- Back button (uses history.back) -->
-        <button onclick="history.back()" class="absolute top-4 left-4 z-20 bg-white/80 text-black px-3 py-1 rounded">
-            Back
-        </button>
-
-        <!-- Centered navigation -->
-        <div class="absolute inset-0 flex items-center justify-center z-10">
+        <div class="absolute inset-0 flex items-center justify-center">
             <nav class="flex flex-col items-center gap-4">
-                <a href="/shirt-collections"
-                    class="nav-link inline-block transform scale-y-[0.8] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100">
-                    COLLECTION
-                </a>
 
-                <a href="/shop"
-                    class="nav-link inline-block transform scale-y-[0.8] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100">
-                    SHOP
-                </a>
+                <div class="mb-2 flex items-center justify-center">
+                    <img src="{{ asset('dnd_oldlogo-removebg.png') }}" alt="DND Logo" class="w-40 h-auto">
 
-                <a href="/help"
-                    class="nav-link inline-block transform scale-y-[0.8] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100">
-                    HELP
-                </a>
 
-                <a href="/contacts"
-                    class="nav-link inline-block transform scale-y-[0.8] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100">
-                    CONTACT
-                </a>
+                </div>
+                <a href="{{ route('shirt-collections') }}"
+                    class="nav-link inline-block transform scale-y-[0.8] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100">COLLECTION</a>
+
+                <a href="{{ route('shop') }}"
+                    class="nav-link inline-block transform scale-y-[0.8] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100">SHOP</a>
+
+                <a href="{{ route('help') }}"
+                    class="nav-link inline-block transform scale-y-[0.8] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100">HELP</a>
+
+                <a href="{{ route('contact') }}"
+                    class="nav-link inline-block transform scale-y-[0.8] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100">CONTACT</a>
             </nav>
-        </div>
-
-        <!-- Content yield for child pages -->
-        <div class="absolute inset-0 flex items-start justify-center z-20 pt-36">
-            <div class="w-full">
-                @yield('content')
-            </div>
         </div>
 
     </main>
