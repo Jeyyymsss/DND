@@ -18,7 +18,7 @@
         html,
         body {
             height: 100%;
-            overflow: hidden;
+            overflow: auto;
         }
 
         .font-streetwear {
@@ -62,12 +62,12 @@
     class="bg-gradient-dnd text-white font-nav min-h-screen flex flex-col justify-between antialiased selection:bg-emerald-800 selection:text-white">
 
     <video id="bg-video" autoplay muted loop playsinline crossorigin="anonymous">
-        <source src="http://localhost/DND TEST.mp4" type="video/mp4">
+        <source src="/DND%20TEST.mp4" type="video/mp4">
     </video>
 
     <header
-        class="fixed top-0 left-0 right-0 z-50 flex items-center justify-start px-8 py-6 bg-gradient-to-b from-black/60 to-transparent backdrop-blur-xs">
-        <nav class="flex flex-row items-center gap-6 md:gap-10">
+        class="fixed top-0 left-0 right-0 z-50 flex items-center justify-start px-4 py-4 bg-gradient-to-b from-black/60 to-transparent backdrop-blur-xs">
+        <nav class="flex flex-row items-center gap-4 md:gap-10 flex-wrap overflow-auto">
             <a href="{{ route('shirt-collections') }}"
                 class="nav-link inline-block transform scale-y-[0.85] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100 whitespace-nowrap">
                 COLLECTION
@@ -100,7 +100,7 @@
     <footer class="fixed bottom-0 left-0 right-0 p-6 flex justify-between items-center z-50 pointer-events-none">
 
         <!-- Back Button -->
-        <a href="./"
+            <a href="{{ route('home') }}"
             class="pointer-events-auto bg-white text-black hover:bg-amber-100 font-sans font-medium text-xs py-2.5 px-4 rounded-full flex items-center space-x-2 shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 inline-flex">
 
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

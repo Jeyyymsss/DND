@@ -20,7 +20,7 @@
         html,
         body {
             height: 100%;
-            overflow: hidden;
+            overflow: auto;
         }
 
         .font-streetwear {
@@ -79,16 +79,16 @@
                 </div>
 
                 <div class="flex gap-6">
-                    <a href="/shirt-collections"
+                    <a href="{{ route('shirt-collections') }}"
                         class="px-6 py-3 bg-white/10 hover:bg-white/20 rounded-full tracking-widest text-sm font-bold">COLLECTIONS</a>
 
-                    <a href="/shop"
+                    <a href="{{ route('shop') }}"
                         class="px-6 py-3 bg-white/10 hover:bg-white/20 rounded-full tracking-widest text-sm font-bold">SHOP</a>
 
-                    <a href="/help"
+                    <a href="{{ route('help') }}"
                         class="px-6 py-3 bg-white/10 hover:bg-white/20 rounded-full tracking-widest text-sm font-bold">HELP</a>
 
-                    <a href="/contacts"
+                    <a href="{{ route('contact') }}"
                         class="px-6 py-3 bg-white/10 hover:bg-white/20 rounded-full tracking-widest text-sm font-bold">CONTACT</a>
                 </div>
             </nav>

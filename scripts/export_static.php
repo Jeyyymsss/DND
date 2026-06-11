@@ -90,6 +90,20 @@ foreach ($pages as $path => $view) {
     // Rewrite root-relative URLs (/path) to be relative using baseHref
     $html = preg_replace('#(src|href|action)=("|\')/([^"\']+)#i', '$1=$2' . $baseHref . '$3', $html);
 
+    // Also rewrite absolute URLs that point to the local app (APP_URL or localhost) to relative
+    $appUrl = rtrim(getenv('APP_URL') ?: config('app.url', ''), '/');
+    if (!empty($appUrl)) {
+        $escaped = preg_quote($appUrl, '#');
+        $html = preg_replace('#' . $escaped . '(/[^"\']*)#i', $baseHref . '$1', $html);
+    }
+    // common local hosts
+    $html = preg_replace('#https?://localhost(/[^"\']*)#i', $baseHref . '$1', $html);
+    $html = preg_replace('#https?://127\.0\.0\.1(/[^"\']*)#i', $baseHref . '$1', $html);
+
+    // Cleanup accidental double slashes after base insertion (e.g. .//shop -> ./shop)
+    $html = str_replace('.//', './', $html);
+    $html = str_replace($baseHref . '/','' . $baseHref, $html);
+
     // Write index.html for this page
     $outFile = rtrim($outDir, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . 'index.html';
     file_put_contents($outFile, $html);
