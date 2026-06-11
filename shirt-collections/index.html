@@ -2,25 +2,23 @@
 <html lang="en">
 
 <head>\n    <base href="../">
+    <base href="./">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DND</title>
-    <!-- Favicon / Tab icon -->
-    <link rel="icon" href="http://localhost/logo.jpg" type="image/x-icon">
-    <link rel="apple-touch-icon" href="http://localhost/logo.jpg">
+    <link rel="icon" href="../logo.jpg" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../logo.jpg">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Archivo font (Bold) -->
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700&display=swap" rel="stylesheet">
-
 
     <style>
         /* Prevent page scrolling */
         html,
         body {
             height: 100%;
-            overflow: hidden;
+            overflow: auto;
         }
 
         .font-streetwear {
@@ -35,7 +33,8 @@
         .font-nav {
             font-family: 'Archivo', sans-serif;
             font-weight: 700;
-            font-size: 18px;
+            font-size: 16px;
+            /* Slightly adjusted down for sleeker top nav alignment */
             letter-spacing: 0.15em;
         }
 
@@ -62,66 +61,69 @@
 <body
     class="bg-gradient-dnd text-white font-nav min-h-screen flex flex-col justify-between antialiased selection:bg-emerald-800 selection:text-white">
 
+    <video id="bg-video" autoplay muted loop playsinline crossorigin="anonymous">
+        <source src="../DND%20TEST.mp4" type="video/mp4">
+    </video>
 
+    <header
+        class="fixed top-0 left-0 right-0 z-50 flex items-center justify-start px-4 py-4 bg-gradient-to-b from-black/60 to-transparent backdrop-blur-xs">
+        <nav class="flex flex-row items-center gap-4 md:gap-10 flex-wrap overflow-auto">
+            <a href="../shirt-collections"
+                class="nav-link inline-block transform scale-y-[0.85] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100 whitespace-nowrap">
+                COLLECTION
+            </a>
 
-    <main class="relative h-screen">
+            <a href="../shop"
+                class="nav-link inline-block transform scale-y-[0.85] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100 whitespace-nowrap">
+                SHOP
+            </a>
 
-        <!-- Fullscreen background video (uses public/DND TEST.mp4) -->
-        <video id="bg-video" autoplay muted loop playsinline crossorigin="anonymous">
-            <source src="http://localhost/DND TEST.mp4" type="video/mp4">
-        </video>
+            <a href="../help"
+                class="nav-link inline-block transform scale-y-[0.85] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100 whitespace-nowrap">
+                HELP
+            </a>
 
-        <!-- Logo at top -->
-        <div class="absolute top-0 left-0 right-0 flex justify-center pt-6 z-10">
-            <img src="http://localhost/dnd_oldlogo-removebg.png" alt="DND Logo" class="w-full max-w-xs h-auto">
-        </div>
+            <a href="../contacts"
+                class="nav-link inline-block transform scale-y-[0.85] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100 whitespace-nowrap">
+                CONTACT
+            </a>
+        </nav>
+    </header>
 
-
-        <!-- Centered navigation -->
-        <div class="absolute inset-0 flex items-center justify-center z-10">
-            <nav class="flex flex-col items-center gap-4">
-                <a href="../shirt-collections"
-                    class="nav-link inline-block transform scale-y-[0.8] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100">
-                    COLLECTION
-                </a>
-
-                <a href="../shop"
-                    class="nav-link inline-block transform scale-y-[0.8] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100">
-                    SHOP
-                </a>
-
-                <a href="../help"
-                    class="nav-link inline-block transform scale-y-[0.8] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100">
-                    HELP
-                </a>
-
-                <a href="../contacts"
-                    class="nav-link inline-block transform scale-y-[0.8] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100">
-                    CONTACT
-                </a>
-            </nav>
-        </div>
-
-        <!-- Content yield for child pages -->
-        <div class="absolute inset-0 flex items-start justify-center z-20 pt-36">
-            <div class="w-full">
-                    <div class="flex flex-col items-center justify-center text-center p-8">
-        <h1 class="text-4xl font-bold mb-4">Shirt Collections</h1>
-        <p class="max-w-2xl">Placeholder for shirt collections — showcase your designs here.</p>
-        <a href="/" class="mt-6 inline-block px-4 py-2 bg-white text-black rounded">Back Home</a>
-    </div>
+    <main class="relative flex-grow h-full">
+        <div class="absolute inset-0 flex items-start justify-center z-20 pt-44 px-6 overflow-y-auto h-full">
+            <div class="w-full max-w-7xl mx-auto">
             </div>
         </div>
-
     </main>
-    <footer class="w-full p-6 flex justify-end items-center z-50">
+
+    <footer class="fixed bottom-0 left-0 right-0 p-6 flex justify-between items-center z-50 pointer-events-none">
+
+        <!-- Back Button -->
+            <a href="http://localhost"
+            class="pointer-events-auto bg-white text-black hover:bg-amber-100 font-sans font-medium text-xs py-2.5 px-4 rounded-full flex items-center space-x-2 shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 inline-flex">
+
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
+                </path>
+            </svg>
+
+            <span
+                class="tnav-link inline-block transform scale-y-[0.85] tracking-[0.25em] font-bold origin-center transition duration-200">
+                Back
+            </span>
+        </a>
+
+        <!-- Chat Button -->
         <button
-            class="bg-white text-black hover:bg-amber-100 font-sans font-medium text-xs py-2.5 px-4 rounded-full flex items-center space-x-2 shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 relative">
+            class="pointer-events-auto bg-white text-black hover:bg-amber-100 font-sans font-medium text-xs py-2.5 px-4 rounded-full flex items-center space-x-2 shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 relative">
+
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
                 </path>
             </svg>
+
             <span class="tracking-normal font-semibold">Chat</span>
 
             <span
@@ -129,6 +131,7 @@
                 1
             </span>
         </button>
+
     </footer>
 
 </body>
