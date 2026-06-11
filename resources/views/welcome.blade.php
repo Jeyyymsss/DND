@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DND</title>
     <!-- Favicon / Tab icon -->
-    <link rel="icon" href="/logo.jpg" type="image/x-icon">
-    <link rel="apple-touch-icon" href="/logo.jpg">
+    <link rel="icon" href="{{ asset('logo.jpg') }}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{{ asset('logo.jpg') }}">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -66,31 +66,31 @@
 
     <main class="relative h-screen">
 
-        <!-- Fullscreen background video (place your video at public/DND TEST.mp4) -->
+        <!-- Fullscreen background video (place your video at public/videos/DND_TEST.mp4) -->
         <video id="bg-video" autoplay muted loop playsinline crossorigin="anonymous">
-            <source src="/DND%20TEST.mp4" type="video/mp4">
+            <source src="{{ asset('DND TEST.mp4') }}" type="video/mp4">
             <!-- Fallback image -->
-            <img src="/logo.png" alt="Background">
+            <img src="{{ asset('logo.png') }}" alt="Background">
         </video>
-        <div class="absolute inset-0 flex items-center justify-center">
-            <nav class="flex flex-col items-center gap-6">
-                <div class="mb-4 flex items-center justify-center">
-                    <img src="/dnd_oldlogo-removebg.png" alt="DND Logo" class="w-40 h-auto">
+        <div class="absolute inset-0 flex items-center justify-center px-4">
+            <nav class="flex flex-col md:flex-row items-center gap-4">
+
+                <div class="mb-2 flex items-center justify-center">
+                    <img src="{{ asset('dnd_oldlogo-removebg.png') }}" alt="DND Logo" class="w-40 max-w-full h-auto">
+
+
                 </div>
+                <a href="{{ route('shirt-collections') }}"
+                    class="nav-link inline-block transform scale-y-[0.8] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100 px-4 py-2">COLLECTION</a>
 
-                <div class="flex gap-6">
-                    <a href="{{ route('shirt-collections') }}"
-                        class="px-6 py-3 bg-white/10 hover:bg-white/20 rounded-full tracking-widest text-sm font-bold">COLLECTIONS</a>
+                <a href="{{ route('shop') }}"
+                    class="nav-link inline-block transform scale-y-[0.8] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100 px-4 py-2">SHOP</a>
 
-                    <a href="{{ route('shop') }}"
-                        class="px-6 py-3 bg-white/10 hover:bg-white/20 rounded-full tracking-widest text-sm font-bold">SHOP</a>
+                <a href="{{ route('help') }}"
+                    class="nav-link inline-block transform scale-y-[0.8] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100 px-4 py-2">HELP</a>
 
-                    <a href="{{ route('help') }}"
-                        class="px-6 py-3 bg-white/10 hover:bg-white/20 rounded-full tracking-widest text-sm font-bold">HELP</a>
-
-                    <a href="{{ route('contact') }}"
-                        class="px-6 py-3 bg-white/10 hover:bg-white/20 rounded-full tracking-widest text-sm font-bold">CONTACT</a>
-                </div>
+                <a href="{{ route('contact') }}"
+                    class="nav-link inline-block transform scale-y-[0.8] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100 px-4 py-2">CONTACT</a>
             </nav>
         </div>
 
