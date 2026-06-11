@@ -56,6 +56,12 @@ try {
     exit(1);
 }
 
+// Insert a base tag to ensure relative paths resolve when served under a repo subpath
+$html = preg_replace('/<head(.*?)>/i', '<head$1>\n    <base href="./">', $html, 1);
+
+// Convert absolute root-relative URLs ("/path") to relative ("./path") so GitHub Pages project sites work
+$html = preg_replace('#(src|href)=("|\')/#i', '$1=$2./', $html);
+
 file_put_contents($staticPath . DIRECTORY_SEPARATOR . 'index.html', $html);
 
 echo "Static export complete. Files written to: $staticPath" . PHP_EOL;
