@@ -173,6 +173,26 @@
                     }
                 }
             });
+            // Welcome page sidebar toggle (if present)
+            const wBtn = document.getElementById('welcome-nav-toggle');
+            const wSidebar = document.getElementById('welcome-sidebar');
+            if (wBtn && wSidebar) {
+                wBtn.addEventListener('click', function(e){
+                    e.stopPropagation();
+                    if (wSidebar.classList.contains('-translate-x-full')) {
+                        wSidebar.classList.remove('-translate-x-full');
+                    } else {
+                        wSidebar.classList.add('-translate-x-full');
+                    }
+                });
+                document.addEventListener('click', function(e){
+                    if (!wSidebar.contains(e.target) && !wBtn.contains(e.target)) {
+                        if (!wSidebar.classList.contains('-translate-x-full')) {
+                            wSidebar.classList.add('-translate-x-full');
+                        }
+                    }
+                });
+            }
         })();
     </script>
 
