@@ -5,13 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DND</title>
+    <!-- Favicon / Tab icon -->
+    <link rel="icon" href="{{ asset('logo.jpg') }}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{{ asset('logo.jpg') }}">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Archivo font (Bold) -->
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700&display=swap" rel="stylesheet">
 
 
     <style>
-        /* Custom utility classes matching the provided references */
+        /* Prevent page scrolling */
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+        }
+
         .font-streetwear {
             font-family: 'Oswald', sans-serif;
             letter-spacing: 0.05em;
@@ -22,7 +33,9 @@
         }
 
         .font-nav {
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Archivo', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
             letter-spacing: 0.15em;
         }
 
@@ -38,15 +51,29 @@
 
 
 
-    <main class="">
+    <main class="relative h-screen">
+
+        <div class="absolute inset-0 flex items-center justify-center">
+            <nav class="flex flex-col items-center gap-4">
+
+                <div class="mb-2 flex items-center justify-center">
+                    <img src="{{ asset('dnd_oldlogo-removebg.png') }}" alt="DND Logo" class="w-40 h-auto">
 
 
+                </div>
 
-
-
+                <a href="#"
+                    class="nav-link inline-block transform scale-y-[0.8] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100">COLLECTION</a>
+                <a href="#"
+                    class="nav-link inline-block transform scale-y-[0.8] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100">SHOP</a>
+                <a href="#"
+                    class="nav-link inline-block transform scale-y-[0.8] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100">HELP</a>
+                <a href="#"
+                    class="nav-link inline-block transform scale-y-[0.8] tracking-[0.25em] font-bold origin-center transition duration-200 hover:text-amber-100">CONTACT</a>
+            </nav>
+        </div>
 
     </main>
-
     <footer class="w-full p-6 flex justify-end items-center z-50">
         <button
             class="bg-white text-black hover:bg-amber-100 font-sans font-medium text-xs py-2.5 px-4 rounded-full flex items-center space-x-2 shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 relative">
