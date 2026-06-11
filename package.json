@@ -5,8 +5,8 @@
     "scripts": {
         "build": "vite build",
         "dev": "vite",
-        "export": "php artisan export",
-        "deploy": "gh-pages -d dist"
+        "export": "php scripts/export_static.php",
+        "deploy": "npx gh-pages -d static"
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.0.0",
