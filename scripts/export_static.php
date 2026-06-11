@@ -84,12 +84,16 @@ foreach ($pages as $path => $view) {
     }
     $baseHref = ($depth === 0) ? './' : str_repeat('../', $depth);
 
-// Insert a base tag to ensure relative paths resolve when served under a repo subpath
-$html = preg_replace('/<head(.*?)>/i', '<head$1>\n    <base href="./">', $html, 1);
+    // Insert base tag after <head>
+    $html = preg_replace('/<head(.*?)>/i', '<head$1>\n    <base href="' . $baseHref . '">', $html, 1);
 
-// Convert absolute root-relative URLs ("/path") to relative ("./path") so GitHub Pages project sites work
-$html = preg_replace('#(src|href)=("|\')/#i', '$1=$2./', $html);
+    // Rewrite root-relative URLs (/path) to be relative using baseHref
+    $html = preg_replace('#(src|href|action)=("|\')/([^"\']+)#i', '$1=$2' . $baseHref . '$3', $html);
 
-file_put_contents($staticPath . DIRECTORY_SEPARATOR . 'index.html', $html);
+    // Write index.html for this page
+    $outFile = rtrim($outDir, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . 'index.html';
+    file_put_contents($outFile, $html);
+    echo "Wrote: $outFile" . PHP_EOL;
+}
 
 echo "Static export complete. Files written to: $staticPath" . PHP_EOL;
