@@ -49,12 +49,40 @@ if (is_dir($publicPath)) {
 Illuminate\Support\Facades\Config::set('app.url', '');
 Illuminate\Support\Facades\URL::forceRootUrl('');
 
-try {
-    $html = view('welcome')->render();
-} catch (Exception $e) {
-    echo "Error rendering view: " . $e->getMessage() . PHP_EOL;
-    exit(1);
-}
+$pages = [
+    '' => 'welcome',
+    'shop' => 'shop.index',
+    'contacts' => 'contacts.index',
+    'help' => 'help.index',
+    'shirt-collections' => 'shirt_collections.index',
+];
+
+foreach ($pages as $path => $view) {
+    if (!view()->exists($view)) {
+        echo "Skipping missing view: $view" . PHP_EOL;
+        continue;
+    }
+
+    try {
+        $html = view($view)->render();
+    } catch (Exception $e) {
+        echo "Error rendering view $view: " . $e->getMessage() . PHP_EOL;
+        continue;
+    }
+
+    // Determine output directory
+    $outDir = $staticPath;
+    if ($path !== '') {
+        $outDir = $staticPath . DIRECTORY_SEPARATOR . $path;
+        if (!is_dir($outDir)) mkdir($outDir, 0755, true);
+    }
+
+    // Compute base href for this page so relative paths resolve on GitHub Pages
+    $depth = 0;
+    if ($path !== '') {
+        $depth = count(explode('/', trim($path, '/')));
+    }
+    $baseHref = ($depth === 0) ? './' : str_repeat('../', $depth);
 
 // Insert a base tag to ensure relative paths resolve when served under a repo subpath
 $html = preg_replace('/<head(.*?)>/i', '<head$1>\n    <base href="./">', $html, 1);

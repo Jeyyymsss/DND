@@ -4,6 +4,9 @@ on:
   push:
     branches: [ main ]
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -23,6 +26,10 @@ jobs:
       - name: Run static exporter
         run: |
           php scripts/export_static.php
+
+      - name: List static files (debug)
+        run: |
+          echo "Static files:" && ls -la static || true
 
       - name: Publish to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
