@@ -43,6 +43,19 @@
         .bg-gradient-dnd {
             background: radial-gradient(circle at center, #0e1e17 0%, #060a08 100%);
         }
+
+        /* Fullscreen background video styling */
+        #bg-video {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 100vw;
+            height: 100vh;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            z-index: -1;
+            pointer-events: none;
+        }
     </style>
 </head>
 
@@ -53,6 +66,12 @@
 
     <main class="relative h-screen">
 
+        <!-- Fullscreen background video (place your video at public/videos/DND_TEST.mp4) -->
+        <video id="bg-video" autoplay muted loop playsinline crossorigin="anonymous">
+            <source src="{{ asset('DND TEST.mp4') }}" type="video/mp4">
+            <!-- Fallback image -->
+            <img src="{{ asset('logo.png') }}" alt="Background">
+        </video>
         <div class="absolute inset-0 flex items-center justify-center">
             <nav class="flex flex-col items-center gap-4">
 
@@ -88,7 +107,7 @@
                 class="absolute -top-1.5 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[9px] font-bold text-white ring-2 ring-emerald-950">
                 1
             </span>
-        </button>
+            </div>
     </footer>
 
 </body>
