@@ -72,33 +72,16 @@
             <!-- Fallback image -->
             <img src="{{ asset('logo.png') }}" alt="Background">
         </video>
-        <!-- Vertical sidebar on md+, collapsible on small screens -->
+        <!-- Centered vertical nav (responsive) -->
         <div class="absolute inset-0 flex items-center justify-center px-4">
-            <button id="welcome-nav-toggle" class="md:hidden absolute top-6 left-4 z-50 p-2 rounded bg-white/10 hover:bg-white/20">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-            </button>
+            <div class="w-full max-w-md flex flex-col items-center gap-6">
+                <img src="{{ asset('dnd_oldlogo-removebg.png') }}" alt="DND Logo" class="w-40 max-w-full h-auto">
 
-            <aside id="welcome-sidebar" class="fixed left-0 top-0 h-full w-56 bg-transparent z-40 transform -translate-x-full md:translate-x-0 transition-transform duration-200">
-                <div class="h-full flex flex-col items-center pt-24 gap-6">
-                    <img src="{{ asset('dnd_oldlogo-removebg.png') }}" alt="DND Logo" class="w-36 max-w-full h-auto">
-
-                    <nav class="flex flex-col items-center gap-4 mt-6">
-                        <a href="{{ route('shirt-collections') }}" class="w-full text-center px-4 py-2 hover:bg-white/5 rounded">COLLECTIONS</a>
-                        <a href="{{ route('shop') }}" class="w-full text-center px-4 py-2 hover:bg-white/5 rounded">SHOP</a>
-                        <a href="{{ route('help') }}" class="w-full text-center px-4 py-2 hover:bg-white/5 rounded">HELP</a>
-                        <a href="{{ route('contact') }}" class="w-full text-center px-4 py-2 hover:bg-white/5 rounded">CONTACT</a>
-                    </nav>
-                </div>
-            </aside>
-
-            <!-- Center content shifts right on md to accommodate sidebar -->
-            <div class="md:pl-56 w-full flex items-center justify-center">
-                <nav class="flex flex-col items-center gap-4 md:hidden">
-                    <img src="{{ asset('dnd_oldlogo-removebg.png') }}" alt="DND Logo" class="w-40 max-w-full h-auto">
-                    <a href="{{ route('shirt-collections') }}" class="px-4 py-2">COLLECTIONS</a>
-                    <a href="{{ route('shop') }}" class="px-4 py-2">SHOP</a>
-                    <a href="{{ route('help') }}" class="px-4 py-2">HELP</a>
-                    <a href="{{ route('contact') }}" class="px-4 py-2">CONTACT</a>
+                <nav class="w-full flex flex-col items-center gap-4">
+                    <a href="{{ route('shirt-collections') }}" class="w-full text-center px-6 py-3 bg-white/8 hover:bg-white/12 rounded-md">COLLECTIONS</a>
+                    <a href="{{ route('shop') }}" class="w-full text-center px-6 py-3 bg-white/8 hover:bg-white/12 rounded-md">SHOP</a>
+                    <a href="{{ route('help') }}" class="w-full text-center px-6 py-3 bg-white/8 hover:bg-white/12 rounded-md">HELP</a>
+                    <a href="{{ route('contact') }}" class="w-full text-center px-6 py-3 bg-white/8 hover:bg-white/12 rounded-md">CONTACT</a>
                 </nav>
             </div>
         </div>
